@@ -12,6 +12,8 @@ something for too long time. Because sometimes I just forget to set a new goal a
 completely different task. Xoal helps to stay on the same goal or at least observe the fact that
 I've got distracted.
 
+![xoal.gif](gif/xoal.gif)
+
 # Tech
 
 * React
