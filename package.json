@@ -81,16 +81,6 @@
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1"
   },
-  "build": {
-    "appId": "xoal",
-    "directories": {
-      "output": "packages"
-    },
-    "files": [
-      "package.json",
-      "dist/**"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

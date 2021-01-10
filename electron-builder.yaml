@@ -1,0 +1,10 @@
+appId: com.electron.xoal
+productName: xoal
+directories:
+  output: packages
+files:
+  - "package.json"
+  - "dist/**"
+linux:
+  publish:
+    - github
