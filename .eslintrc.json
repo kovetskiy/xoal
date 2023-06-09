@@ -19,12 +19,10 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "prettier", "@typescript-eslint"],
   "rules": {
+    "semi": "off",
+    "comma-dangle":"off",
     "react/prop-types": "off",
     "import/extensions": [
       "error",
@@ -37,7 +35,7 @@
   },
   "settings": {
     "import/resolver": {
-      "typescript": {} 
+      "typescript": {}
     }
   }
 }

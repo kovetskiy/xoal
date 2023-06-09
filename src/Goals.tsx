@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Box, Divider } from '@chakra-ui/react';
 import React from 'react';
 import { GoalHeader, GoalEmptyHeader } from './components/GoalHeader';
 import { GoalInput } from './components/GoalInput';
 import { GoalList } from './components/GoalList';
 import moment from 'moment';
-
-const { spawn } = require('child_process');
+import notifier from 'node-notifier';
 
 export type Props = {
   today: string;
@@ -19,8 +20,6 @@ export type Goal = {
 };
 
 const store = new (require('electron-store'))();
-
-const notifier = require('node-notifier');
 
 type ParsedGoal = {
   text: string;
@@ -79,11 +78,18 @@ export const Goals = ({ today }: Props) => {
       }
     }
 
+    // check if it's just a number
+    if (text.match(/^[\d.]+$/)) {
+      // eslint-disable-next-line semi
+      addMinutesLastGoal(parseFloat(text));
+      return;
+    }
+
     startGoal(text);
   };
 
   const finishLastGoal = (finishedAt: Date): Goal[] => {
-    if (!stateGoals || stateGoals.length == 0) {
+    if (!stateGoals || stateGoals.length === 0) {
       return [];
     }
 
@@ -93,7 +99,7 @@ export const Goals = ({ today }: Props) => {
   };
 
   const addMinutesLastGoal = (minutes: number) => {
-    if (!stateGoals || stateGoals.length == 0) {
+    if (!stateGoals || stateGoals.length === 0) {
       return;
     }
 
@@ -118,9 +124,9 @@ export const Goals = ({ today }: Props) => {
       const took = minutesSince(currentGoal);
       if (took > currentGoal.duration) {
         notifier.notify({
-          title: 'xoal: time issue',
-          message: 'No time left: ' + currentGoal.text,
-          timeout: 2,
+          title: '⌛Time is up!',
+          message: currentGoal.text,
+          timeout: 3,
         });
       }
     }, 5000);

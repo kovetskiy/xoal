@@ -25,6 +25,7 @@ I've got distracted.
 # Dev: start
 
 ```
+nvm install lts/gallium
 npm run dev:react
 ```
 
@@ -41,3 +42,4 @@ npx electron-builder
 # License
 
 MIT
+
