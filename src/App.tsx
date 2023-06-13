@@ -5,6 +5,9 @@ import { render } from 'react-dom';
 import { Goals } from './Goals';
 import { createGlobalStyle } from 'styled-components';
 
+import ElectronStore from 'electron-store';
+ElectronStore.initRenderer();
+
 const App = () => {
   const customTheme = extendTheme({
     fonts: {
@@ -21,6 +24,8 @@ const App = () => {
     ::-webkit-scrollbar {
         display: none;
     }`;
+
+  console.log('aaa');
 
   const today = moment(new Date()).format('YYYY-MM-DD');
   return (

@@ -43,7 +43,9 @@ const minutesSince = (goal: Goal): number => {
 };
 
 export const Goals = ({ today }: Props) => {
+  console.log('today', today);
   const [stateGoals, setStateGoals] = React.useState<Goal[]>(store.get(today));
+  console.log('stateGoals', stateGoals);
 
   const [currentGoal, setCurrentGoal] = React.useState(
     stateGoals && stateGoals.length

@@ -8,6 +8,9 @@ import installExtension, {
 
 let mainWindow: Electron.BrowserWindow | null;
 
+import ElectronStore from 'electron-store';
+ElectronStore.initRenderer();
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     frame: false,
@@ -17,6 +20,7 @@ function createWindow() {
     title: 'tudu',
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
@@ -42,12 +46,12 @@ app
   .whenReady()
   .then(() => {
     if (process.env.NODE_ENV === 'development') {
-      installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
-      installExtension(REDUX_DEVTOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
+      //installExtension(REACT_DEVELOPER_TOOLS)
+      //  .then((name) => console.log(`Added Extension:  ${name}`))
+      //  .catch((err) => console.log('An error occurred: ', err));
+      //installExtension(REDUX_DEVTOOLS)
+      //  .then((name) => console.log(`Added Extension:  ${name}`))
+      //  .catch((err) => console.log('An error occurred: ', err));
     }
   });
 app.allowRendererProcessReuse = true;
