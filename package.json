@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm-run-all -p dev:react electron:serve",
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack/electron.webpack.js --mode development && npm run start:electron",
-    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack/react.webpack.js --mode development",
+    "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack/react.webpack.js --mode development",
     "electron:serve": "wait-on http-get://localhost:4000/ && npm run dev:electron",
     "start:electron": "electron .",
     "build": "npm-run-all build:electron build:react",
@@ -65,7 +65,7 @@
     "wait-on": "^5.0.1",
     "webpack": "^5.87.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.2",
@@ -88,8 +88,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "lint-staged"
     }
   },
