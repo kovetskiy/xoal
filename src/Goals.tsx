@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Box, Divider } from '@chakra-ui/react';
 import React from 'react';
 import { GoalHeader, GoalEmptyHeader } from './components/GoalHeader';
@@ -34,7 +35,7 @@ const parseGoal = (text: string): ParsedGoal => {
   }
   return {
     text: matches[1],
-    duration: parseFloat(matches[2]),
+    duration: parseFloat(matches[2])
   };
 };
 
@@ -58,12 +59,21 @@ export const Goals = ({ today }: Props) => {
     const nextGoal: Goal = {
       text: parsed.text,
       startedAt: new Date(),
-      duration: parsed.duration || 10,
+      duration: parsed.duration || 10
     };
 
     const goals = finishLastGoal(nextGoal.startedAt);
 
     goals.push(nextGoal);
+
+    if (process.env.HOOK_NEW_GOAL) {
+      spawn(process.env.HOOK_NEW_GOAL, {
+        env: {
+          ...process.env,
+          XOAL_GOAL: nextGoal.text
+        }
+      });
+    }
 
     store.set(today, goals);
     setCurrentGoal(nextGoal);
@@ -83,7 +93,7 @@ export const Goals = ({ today }: Props) => {
   };
 
   const finishLastGoal = (finishedAt: Date): Goal[] => {
-    if (!stateGoals || stateGoals.length == 0) {
+    if (!stateGoals || stateGoals.length === 0) {
       return [];
     }
 
@@ -93,7 +103,7 @@ export const Goals = ({ today }: Props) => {
   };
 
   const addMinutesLastGoal = (minutes: number) => {
-    if (!stateGoals || stateGoals.length == 0) {
+    if (!stateGoals || stateGoals.length === 0) {
       return;
     }
 
@@ -120,7 +130,7 @@ export const Goals = ({ today }: Props) => {
         notifier.notify({
           title: 'xoal: time issue',
           message: 'No time left: ' + currentGoal.text,
-          timeout: 2,
+          timeout: 2
         });
       }
     }, 5000);
