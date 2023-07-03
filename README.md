@@ -38,6 +38,17 @@ npm run dev:electron
 npx electron-builder
 ```
 
+# Troubleshooting
+
+If you experience an error like
+```
+gpu_data_manager_impl_private.cc(1034)] The display compositor electron is frequently crashing.
+```
+
+Try running appimage with `--no-sandbox` flag.
+
+See https://dev.to/agiksetiawan/appimage-crash-the-display-compositor-is-frequently-crashing-goodbye-g4
+
 # License
 
 MIT
