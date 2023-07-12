@@ -1,6 +1,6 @@
 {
   "name": "xoal",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "single goal app",
   "main": "./dist/main.js",
   "scripts": {
